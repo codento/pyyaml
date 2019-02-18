@@ -151,3 +151,4 @@ def run(collections, args=None):
             results.append(result)
     return display(results, verbose=verbose)
 
+
