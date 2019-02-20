@@ -8,8 +8,6 @@ from nodes import *
 from loader import *
 from dumper import *
 
-default_loader = Loader
-
 __version__ = '3.13'
 
 try:
@@ -101,6 +99,8 @@ def compose_all(stream, Loader=Loader):
     finally:
         loader.dispose()
 
+default_loader = Loader
+
 def load(stream, Loader=None):
     """
     Parse the first YAML document in a stream
@@ -108,7 +108,7 @@ def load(stream, Loader=None):
     """
     if Loader == None or Loader == default_loader:
         load_warning('load')
-        Loader = default_loader
+        Loader = FullLoader
 
     loader = Loader(stream)
     try:
@@ -123,7 +123,7 @@ def load_all(stream, Loader=None):
     """
     if Loader == None or Loader == default_loader:
         load_warning('load_all')
-        Loader = default_loader
+        Loader = FullLoader
 
     loader = Loader(stream)
     try:
