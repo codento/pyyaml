@@ -22,26 +22,26 @@ except ImportError:
 #------------------------------------------------------------------------------
 
 # 'Global' warnings state:
-warnings_enabled = {
+_warnings_enabled = {
     'YAMLLoadWarning': True,
 }
 
 # Get or set global warnings' state
 def warnings(settings=None):
     if settings == None:
-        return warnings_enabled
+        return _warnings_enabled
 
     if type(settings) is dict:
         for key in settings:
-            if key in warnings_enabled:
-                warnings_enabled[key] = settings[key]
+            if key in _warnings_enabled:
+                _warnings_enabled[key] = settings[key]
 
 # Warn when load() is called without Loader=...
 class YAMLLoadWarning(RuntimeWarning):
     pass
 
 def load_warning(method):
-    if warnings_enabled['YAMLLoadWarning'] == False:
+    if _warnings_enabled['YAMLLoadWarning'] == False:
         return
 
     import warnings
