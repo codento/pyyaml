@@ -99,14 +99,12 @@ def compose_all(stream, Loader=Loader):
     finally:
         loader.dispose()
 
-default_loader = Loader
-
 def load(stream, Loader=None):
     """
     Parse the first YAML document in a stream
     and produce the corresponding Python object.
     """
-    if Loader == None or Loader == default_loader:
+    if Loader == None:
         load_warning('load')
         Loader = FullLoader
 
@@ -121,7 +119,7 @@ def load_all(stream, Loader=None):
     Parse all YAML documents in a stream
     and produce corresponding Python objects.
     """
-    if Loader == None or Loader == default_loader:
+    if Loader == None:
         load_warning('load_all')
         Loader = FullLoader
 
